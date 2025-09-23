@@ -19,7 +19,14 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'Bem-vindo, {user.username}!')
-            return redirect('index')
+
+            if user.is_superuser:
+                return redirect('gerencia')
+            else:
+                return redirect('home')
+            # premisao_grupos = user.get_group_permissions()
+            # print(premisao_grupos)
+
         else:
             messages.error(request, 'Usuário ou senha inválidos.')
 
@@ -29,3 +36,11 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/login/')
+
+
+def home_view(request):
+    return render(request, 'accounts/home.html')
+
+
+def gerencia_view(request):
+    return render(request, 'accounts/gerencia.html')
