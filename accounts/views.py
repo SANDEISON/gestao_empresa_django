@@ -12,7 +12,6 @@ def index(request):
 
 def login_view(request):
     if request.method == 'POST':
-
         username = request.POST.get('email')
         password = request.POST.get('senha')
         user = authenticate(request, username=username, password=password)
@@ -24,3 +23,9 @@ def login_view(request):
             messages.error(request, 'Usuário ou senha inválidos.')
 
     return render(request, 'accounts/login.html')
+
+
+def logout_view(request):
+
+
+    return render(request, 'index.html')
