@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 
@@ -9,17 +12,15 @@ def index(request):
 
 def login_view(request):
     if request.method == 'POST':
-        pass
-        # username = request.POST.get('username')
-        # password = request.POST.get('password')
-        #
-        # user = authenticate(request, username=username, password=password)
-        #
-        # if user is not None:
-        #     login(request, user)
-        #     messages.success(request, f'Bem-vindo, {user.username}!')
-        #     return redirect('home')
-        # else:
-        #     messages.error(request, 'Usuário ou senha inválidos.')
+
+        username = request.POST.get('email')
+        password = request.POST.get('senha')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, f'Bem-vindo, {user.username}!')
+            return redirect('index')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos.')
 
     return render(request, 'accounts/login.html')
