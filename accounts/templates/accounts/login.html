@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Sistema</title>
+
+    <link rel="stylesheet" href="{% static 'admin-lte/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin-lte/dist/css/adminlte.min.css' %}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+<!--            incluir logo-->
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Informe seus dados de acesso</p>
+            {% if erro %}<p class="alert alert-danger text-center">{{ erro }}</p>{% endif %}
+            {% if sucesso %}<p class="alert alert-success text-center">{{ sucesso }}</p>{% endif %}
+            <form action="/entrar/" method="post">
+                {% csrf_token %}
+
+                <div class="input-group mb-3">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email"
+                           value="{{ email }}">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+                {% if not debug %}
+                <div class="d-flex justify-content-center my-3">
+                    <div class="g-recaptcha" data-sitekey={{recaptcha_public_key}}></div>
+                </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </div>
+                    <div class="col-12 mt-3 text-center">
+                        <p class="mb-1">
+                            <a href="/esqueci/">Esqueci a senha</a>
+                        </p>
+                        <hr>
+                        <a href="/registro/" class="btn btn-info mt-2">Quero me cadastrar</a>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+
+<script src="{% static 'admin-lte/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'admin-lte/dist/js/adminlte.min.js' %}"></script>
+
+</body>
+
+
+</html>
