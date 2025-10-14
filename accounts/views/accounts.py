@@ -18,8 +18,6 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f'Bem-vindo, {user.username}!')
-
             if user.is_superuser:
                 return redirect('gerencia')
             else:
@@ -30,7 +28,7 @@ def login_view(request):
         else:
             messages.error(request, 'Usuário ou senha inválidos.')
 
-    return render(request, 'accounts/login.html')
+    return render(request, 'login.html')
 
 
 def logout_view(request):
@@ -39,8 +37,8 @@ def logout_view(request):
 
 
 def home_view(request):
-    return render(request, 'accounts/home.html')
+    return render(request, 'home.html')
 
 
 def gerencia_view(request):
-    return render(request, 'accounts/gerencia.html')
+    return render(request, 'gerencia.html')
