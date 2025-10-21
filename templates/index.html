@@ -1,6 +1,133 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container">
-  <h1>Bem-vindo</h1>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas de Cursos Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+
+        .btn-entrar {
+            background-color: #008CBA;
+            color: white;
+            padding: 15px 25px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-entrar:hover {
+            background-color: #007B9F;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+        }
+
+        .course-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .course-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .course-price {
+            font-size: 18px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Aprenda com os Melhores Cursos Online</h1>
+        <p>Faça sua inscrição e comece a estudar agora mesmo!</p>
+    </div>
+
+    <div class="content">
+        <div class="courses">
+            <div class="course-card">
+                <h2 class="course-title">Curso de Programação Web</h2>
+                <p class="course-description">Aprenda a construir sites e aplicações web modernas com HTML, CSS e JavaScript.</p>
+                <p class="course-price">R$ 199,00</p>
+            </div>
+
+            <div class="course-card">
+                <h2 class="course-title">Curso de Marketing Digital</h2>
+                <p class="course-description">Domine as estratégias de marketing para impulsionar seu negócio online.</p>
+                <p class="course-price">R$ 249,00</p>
+            </div>
+
+            <div class="course-card">
+                <h2 class="course-title">Curso de Design Gráfico</h2>
+                <p class="course-description">Aprenda a criar designs incríveis usando ferramentas como Photoshop e Illustrator.</p>
+                <p class="course-price">R$ 179,00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <a href="{% url 'login' %}" class="btn-entrar">Entrar</a>
+    </div>
+
+</body>
+</html>
